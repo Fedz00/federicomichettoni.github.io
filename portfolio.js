@@ -6,7 +6,7 @@
       projects: [
         {
           logo: {
-            src: "images/cumulus9-logo.png",
+            src: "images/CUMULUS9.png",
             alt: "Cumulus9",
           },
           title: "Cumulus9",
@@ -23,7 +23,7 @@
       id: "2024",
       label: "2024",
       logo: {
-        src: "images/immersive-international-logo.png",
+        src: "images/IMMERSIVE.png",
         alt: "Immersive International",
       },
       projects: [
@@ -34,26 +34,7 @@
             "Translated conceptual direction into production-ready visuals for large-scale environments.",
             "Art direction across characters and environments.",
           ],
-          video: "images/uk-pavilion-reel.mp4",
-        },
-      ],
-    },
-    {
-      id: "2023",
-      label: "2023",
-      projects: [
-        {
-          logo: {
-            src: "images/inneraum-logo.png",
-            alt: "Inneraum",
-          },
-          title: "Inneraum",
-          meta: "Berlin fashion brand · campaign",
-          paragraphs: [
-            "Campaign built around one virtual persona and photographed product.",
-            "Continuity of light, proportion and materials across the series.",
-          ],
-          video: "images/inneraum-reel.mp4",
+          video: "images/osaka 2025.mp4",
         },
       ],
     },
@@ -89,7 +70,7 @@
       const logoWrap = document.createElement("div");
       logoWrap.className = "section-logo";
       const img = document.createElement("img");
-      img.src = section.logo.src;
+      img.src = encodeURI(section.logo.src);
       img.alt = section.logo.alt;
       img.loading = "lazy";
       logoWrap.appendChild(img);
@@ -104,7 +85,7 @@
         const logoWrap = document.createElement("div");
         logoWrap.className = "project-logo";
         const img = document.createElement("img");
-        img.src = p.logo.src;
+        img.src = encodeURI(p.logo.src);
         img.alt = p.logo.alt;
         img.loading = "lazy";
         logoWrap.appendChild(img);
@@ -137,7 +118,7 @@
         vid.setAttribute("playsinline", "");
         vid.preload = "metadata";
         const source = document.createElement("source");
-        source.src = p.video;
+        source.src = encodeURI(p.video);
         source.type = "video/mp4";
         vid.appendChild(source);
         block.appendChild(vid);
