@@ -3,6 +3,12 @@
   --text-primary: #111;
   --text-secondary: #555;
   --font-stack: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --timeline-meta-w: 140px;
+  --timeline-gap: 44px;
+  --timeline-content-max: 520px;
+  --timeline-block: calc(var(--timeline-meta-w) + var(--timeline-gap) + var(--timeline-content-max));
+  --page-pad-left: 72px;
+  --page-pad-right: 48px;
 }
 
 *,
@@ -32,6 +38,13 @@ a {
   text-decoration: none;
 }
 
+main.layout.page,
+.layout.page,
+.container {
+  padding-left: var(--page-pad-left);
+  padding-right: var(--page-pad-right);
+}
+
 .shell {
   min-height: 100vh;
   display: flex;
@@ -43,13 +56,13 @@ a {
   position: relative;
   min-height: 100vh;
   background: #fff;
+  padding-top: clamp(40px, 7vw, 88px);
+  padding-bottom: 56px;
 }
 
 .sidebar {
-  width: min(42vw, 520px);
+  width: var(--timeline-block);
   max-width: 100%;
-  padding: clamp(40px, 7vw, 88px) clamp(20px, 3vw, 32px) 56px
-    clamp(48px, 10vw, 120px);
   display: flex;
   flex-direction: column;
   align-items: stretch;
@@ -59,7 +72,8 @@ a {
 }
 
 .identity {
-  margin-bottom: clamp(56px, 10vh, 120px);
+  margin-bottom: clamp(48px, 8vh, 96px);
+  max-width: var(--timeline-block);
 }
 
 .name {
@@ -90,53 +104,55 @@ a {
 .role-list {
   display: flex;
   flex-direction: column;
-  gap: clamp(56px, 9vh, 104px);
+  gap: clamp(48px, 8vh, 88px);
   width: 100%;
+  max-width: var(--timeline-block);
 }
 
-.role-item {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  align-items: baseline;
-  gap: clamp(12px, 2.5vw, 28px);
+.timeline-row {
+  display: grid;
+  grid-template-columns: var(--timeline-meta-w) minmax(0, var(--timeline-content-max));
+  column-gap: var(--timeline-gap);
+  align-items: start;
   padding: 2px 0;
   color: inherit;
 }
 
-.role-mark-col {
-  display: inline-flex;
-  flex-wrap: nowrap;
+.timeline-meta {
+  display: flex;
   align-items: center;
-  gap: 6px;
-  flex-shrink: 0;
-  padding-top: 0;
-  font-size: 16px;
+  gap: 8px;
+  font-size: 22px;
   line-height: 1.2;
+  color: #666;
+  width: var(--timeline-meta-w);
+  min-width: 0;
 }
 
-.role-period {
+.timeline-meta img {
+  height: 18px;
+  width: auto;
+  max-width: 72px;
+  display: block;
+  flex-shrink: 0;
+  object-fit: contain;
+  object-position: left center;
+}
+
+.timeline-date {
   font-size: 1em;
   font-weight: 400;
-  line-height: 1.2;
   letter-spacing: -0.01em;
-  color: var(--text-secondary);
   white-space: nowrap;
 }
 
-.role-logo {
-  display: block;
-  width: auto;
-  height: 1em;
-  max-width: 6em;
-  object-fit: contain;
-  object-position: left center;
-  flex-shrink: 0;
+.timeline-content {
+  max-width: var(--timeline-content-max);
+  min-width: 0;
 }
 
-.role-text-col {
-  min-width: 0;
-  flex: 1;
+.timeline-content p {
+  max-width: 32ch;
 }
 
 .role-title {
@@ -155,14 +171,13 @@ a {
   line-height: 1.5;
   letter-spacing: -0.01em;
   color: var(--text-secondary);
-  max-width: 42em;
 }
 
 .role-desc:last-child {
   margin-bottom: 0;
 }
 
-.role-item:focus-visible {
+.timeline-row:focus-visible {
   outline: 2px solid rgba(17, 17, 17, 0.2);
   outline-offset: 6px;
 }
@@ -170,9 +185,9 @@ a {
 .preview-panel {
   position: fixed;
   top: 0;
-  right: 0;
+  right: var(--page-pad-right);
   bottom: 0;
-  left: min(42vw, 520px);
+  left: calc(var(--page-pad-left) + var(--timeline-block));
   min-height: 0;
   background: #fff;
   overflow: hidden;
@@ -205,30 +220,41 @@ a {
   transform: scale(1);
 }
 
-@media (max-width: 767px) {
-  .sidebar {
-    width: 100%;
-    padding-left: clamp(32px, 8vw, 64px);
-    padding-right: clamp(24px, 5vw, 40px);
-    padding-bottom: 32px;
-  }
-
-  .role-item {
-    flex-direction: column;
-    align-items: flex-start;
-    row-gap: 14px;
-  }
-
-  .role-mark-col {
-    max-width: none;
-  }
-
+@media (max-width: 824px) {
   .preview-panel {
     position: relative;
     left: 0;
     right: 0;
     width: 100%;
     min-height: 220px;
-    margin-top: 8px;
+    margin-top: 24px;
+  }
+
+  .layout {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 767px) {
+  main.layout.page,
+  .layout.page,
+  .container {
+    padding-left: clamp(28px, 6vw, 48px);
+    padding-right: clamp(20px, 5vw, 32px);
+  }
+
+  .sidebar {
+    width: 100%;
+  }
+
+  .timeline-row {
+    grid-template-columns: 1fr;
+    row-gap: 14px;
+  }
+
+  .timeline-meta {
+    width: 100%;
+    max-width: 100%;
   }
 }

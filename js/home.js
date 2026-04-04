@@ -65,7 +65,7 @@
 
   const Sidebar = {
     init(roleList) {
-      const items = roleList.querySelectorAll(".role-item");
+      const items = roleList.querySelectorAll(".timeline-row");
 
       items.forEach(function (link) {
         link.addEventListener("mouseenter", function () {
@@ -80,7 +80,7 @@
       });
 
       roleList.addEventListener("focusin", function (e) {
-        const link = e.target.closest(".role-item");
+        const link = e.target.closest(".timeline-row");
         if (link) PreviewPanel.showFromLink(link);
       });
 
