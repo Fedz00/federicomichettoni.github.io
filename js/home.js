@@ -21,31 +21,36 @@
       const uri = encodeURI(src);
       this.inner.innerHTML = "";
 
-      let el;
+      let root;
       if (type === "video") {
-        el = document.createElement("video");
-        el.className = "preview-media";
-        el.setAttribute("autoplay", "");
-        el.setAttribute("muted", "");
-        el.setAttribute("loop", "");
-        el.setAttribute("playsinline", "");
-        el.setAttribute("webkit-playsinline", "");
-        el.setAttribute("disableremoteplayback", "");
-        el.disablePictureInPicture = true;
-        el.setAttribute("disablePictureInPicture", "");
-        el.setAttribute("controlsList", "nodownload nofullscreen noremoteplayback");
-        el.controls = false;
-        el.muted = true;
-        el.src = uri;
-        el.play().catch(function () {});
+        const wrap = document.createElement("div");
+        wrap.className = "preview-video-crop";
+        const vid = document.createElement("video");
+        vid.setAttribute("autoplay", "");
+        vid.setAttribute("muted", "");
+        vid.setAttribute("loop", "");
+        vid.setAttribute("playsinline", "");
+        vid.setAttribute("webkit-playsinline", "");
+        vid.setAttribute("disableremoteplayback", "");
+        vid.setAttribute("x-webkit-airplay", "deny");
+        vid.disablePictureInPicture = true;
+        vid.setAttribute("disablePictureInPicture", "");
+        vid.setAttribute("controlsList", "nodownload nofullscreen noremoteplayback");
+        vid.controls = false;
+        vid.muted = true;
+        vid.src = uri;
+        vid.play().catch(function () {});
+        wrap.appendChild(vid);
+        root = wrap;
       } else {
-        el = document.createElement("img");
-        el.className = "preview-media";
-        el.src = uri;
-        el.alt = "";
+        const img = document.createElement("img");
+        img.className = "preview-media";
+        img.src = uri;
+        img.alt = "";
+        root = img;
       }
 
-      this.inner.appendChild(el);
+      this.inner.appendChild(root);
       this.inner.classList.add("is-visible");
       this.panel.setAttribute("aria-hidden", "false");
     },

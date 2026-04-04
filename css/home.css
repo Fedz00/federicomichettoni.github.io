@@ -242,24 +242,48 @@ main.layout.page,
   transform: scale(1);
 }
 
-/* Strip browser video chrome (e.g. Safari download / media affordances) on hover preview */
-.preview-panel video.preview-media {
+/*
+ * Safari paints a corner “download” affordance on <video> outside normal control pseudos.
+ * Crop + slight zoom clips that region while keeping object-fit: cover framing acceptable.
+ */
+.preview-video-crop {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.preview-video-crop video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transform: scale(1.22);
+  transform-origin: center center;
+  transition: transform 0.35s ease;
   -webkit-appearance: none;
   appearance: none;
 }
 
-.preview-panel video.preview-media::-webkit-media-controls,
-.preview-panel video.preview-media::-webkit-media-controls-enclosure,
-.preview-panel video.preview-media::-webkit-media-controls-panel,
-.preview-panel video.preview-media::-webkit-media-controls-overlay-play-button,
-.preview-panel video.preview-media::-webkit-media-controls-start-playback-button,
-.preview-panel video.preview-media::-webkit-media-controls-timeline,
-.preview-panel video.preview-media::-webkit-media-controls-current-time-display,
-.preview-panel video.preview-media::-webkit-media-controls-time-remaining-display,
-.preview-panel video.preview-media::-webkit-media-controls-mute-button,
-.preview-panel video.preview-media::-webkit-media-controls-toggle-closed-captions-button,
-.preview-panel video.preview-media::-webkit-media-controls-volume-slider,
-.preview-panel video.preview-media::-webkit-media-controls-fullscreen-button {
+.preview-inner.is-visible .preview-video-crop video {
+  /* ~11% inset each side — enough to clip Safari’s corner download badge */
+  transform: scale(1.14);
+}
+
+/* Strip browser video chrome where WebKit exposes it */
+.preview-panel .preview-video-crop video::-webkit-media-controls,
+.preview-panel .preview-video-crop video::-webkit-media-controls-enclosure,
+.preview-panel .preview-video-crop video::-webkit-media-controls-panel,
+.preview-panel .preview-video-crop video::-webkit-media-controls-overlay-play-button,
+.preview-panel .preview-video-crop video::-webkit-media-controls-start-playback-button,
+.preview-panel .preview-video-crop video::-webkit-media-controls-timeline,
+.preview-panel .preview-video-crop video::-webkit-media-controls-current-time-display,
+.preview-panel .preview-video-crop video::-webkit-media-controls-time-remaining-display,
+.preview-panel .preview-video-crop video::-webkit-media-controls-mute-button,
+.preview-panel .preview-video-crop video::-webkit-media-controls-toggle-closed-captions-button,
+.preview-panel .preview-video-crop video::-webkit-media-controls-volume-slider,
+.preview-panel .preview-video-crop video::-webkit-media-controls-fullscreen-button,
+.preview-panel .preview-video-crop video::-webkit-media-controls-wireless-playback-picker-button {
   display: none !important;
 }
 
