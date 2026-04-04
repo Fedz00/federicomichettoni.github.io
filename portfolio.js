@@ -6,18 +6,10 @@
       projects: [
         {
           title: "Cumulus9",
-          meta: "AI-driven visual content · derivatives & margin analytics",
+          meta: "Derivatives margin analytics",
           paragraphs: [
-            "At Cumulus9, I lead the development of AI-driven visual content for a derivatives margin analytics platform, defining concept, positioning and execution.",
-            "I create short-form visual pieces designed to compare modern margin analytics workflows with legacy methods, highlighting ease of use, transparency and key product features — so the platform’s value is immediately understandable without relying on technical detail.",
-            "As a one-person creative function, I manage the full process from strategic concept and narrative framing to AI generation, motion development and final edit for digital distribution. AI is used as a structured production tool for clarity, usability, efficiency and brand coherence.",
-          ],
-          tools: [
-            "ChatGPT",
-            "Kling AI",
-            "Claude",
-            "Photoshop",
-            "After Effects",
+            "Short-form visual content for a margin analytics platform.",
+            "Concept through motion and delivery for digital distribution.",
           ],
         },
       ],
@@ -25,26 +17,19 @@
     {
       id: "2024",
       label: "2024",
+      logo: {
+        src: "images/immersive-international-logo.png",
+        alt: "Immersive International",
+      },
       projects: [
         {
           title: "UK Pavilion · Expo Osaka 2025",
           meta: "Immersive International",
           paragraphs: [
-            "For the UK Pavilion at Expo Osaka 2025, I contributed to a modular visual system for themes of construction, collaboration and technological progress.",
-            "With the Art Director, I helped shape a narrative in which characters, environments and the pavilion’s mascot evolve from simple pixel-based forms into more complex voxel structures — mirroring building and refinement.",
-            "AI-assisted tools sat inside a controlled workflow for world-building, character continuity and scalable production across large immersive environments.",
+            "Translated conceptual direction into production-ready visuals for large-scale environments.",
+            "Art direction across characters and environments.",
           ],
-          tools: [
-            "Midjourney",
-            "Stable Diffusion",
-            "ControlNet",
-            "Illustrator",
-            "Photoshop",
-            "DALL·E",
-            "Custom GPT",
-            "LoRA training",
-            "Magnific AI",
-          ],
+          video: "images/uk-pavilion-reel.mp4",
         },
       ],
     },
@@ -54,18 +39,10 @@
       projects: [
         {
           title: "Inneraum",
-          meta: "Berlin-based fashion brand · campaign",
+          meta: "Berlin fashion brand · campaign",
           paragraphs: [
-            "Brand campaign integrating AI-generated models with real product photography around a single, consistent virtual persona across multiple images.",
-            "Real accessories were shot and placed on AI-generated figures with attention to proportion, lighting coherence, material realism and identity stability.",
-            "The AI character was treated as a structured narrative element across the campaign — generative tools used with disciplined direction for brand coherence.",
-          ],
-          tools: [
-            "Studio photography",
-            "Stable Diffusion",
-            "ControlNet",
-            "ReActor",
-            "Photoshop",
+            "Campaign built around one virtual persona and photographed product.",
+            "Continuity of light, proportion and materials across the series.",
           ],
         },
       ],
@@ -76,13 +53,11 @@
       projects: [
         {
           title: "AI-enhanced mannequin photography",
-          meta: "Fashion imagery · research",
+          meta: "Fashion imagery",
           paragraphs: [
-            "Exploring generative AI as a controlled tool between traditional product photography and campaign-ready visuals — starting from real garments on mannequins.",
-            "Iterative work on introducing AI-generated figures while preserving proportions, fabric behaviour and material detail, balancing realism, consistency and flexibility.",
-            "Photography, compositing and generative tools combined for authorship and coherence rather than automation as a shortcut.",
+            "Garments on mannequins extended with generated figures.",
+            "Proportion and fabric retained through compositing.",
           ],
-          tools: ["Photography", "Photoshop", "OpenAI", "Magnific AI"],
         },
       ],
     },
@@ -98,6 +73,17 @@
     wrap.className = "panel-fade";
     wrap.setAttribute("role", "region");
     wrap.setAttribute("aria-label", `Work · ${section.label}`);
+
+    if (section.logo) {
+      const logoWrap = document.createElement("div");
+      logoWrap.className = "section-logo";
+      const img = document.createElement("img");
+      img.src = section.logo.src;
+      img.alt = section.logo.alt;
+      img.loading = "lazy";
+      logoWrap.appendChild(img);
+      wrap.appendChild(logoWrap);
+    }
 
     section.projects.forEach((p) => {
       const block = document.createElement("article");
@@ -115,22 +101,24 @@
         block.appendChild(m);
       }
 
-      p.paragraphs.forEach((text) => {
+      (p.paragraphs || []).forEach((text) => {
         const para = document.createElement("p");
         para.className = "project-body";
         para.textContent = text;
         block.appendChild(para);
       });
 
-      if (p.tools && p.tools.length) {
-        const ul = document.createElement("ul");
-        ul.className = "tools";
-        p.tools.forEach((t) => {
-          const li = document.createElement("li");
-          li.textContent = t;
-          ul.appendChild(li);
-        });
-        block.appendChild(ul);
+      if (p.video) {
+        const vid = document.createElement("video");
+        vid.className = "project-video";
+        vid.setAttribute("controls", "");
+        vid.setAttribute("playsinline", "");
+        vid.preload = "metadata";
+        const source = document.createElement("source");
+        source.src = p.video;
+        source.type = "video/mp4";
+        vid.appendChild(source);
+        block.appendChild(vid);
       }
 
       wrap.appendChild(block);

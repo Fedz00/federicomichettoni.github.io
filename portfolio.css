@@ -1,11 +1,11 @@
 :root {
   --bg: #ffffff;
   --text: #000000;
-  --muted: #666666;
-  --faint: #999999;
-  --accent: #000000;
+  --muted: #555555;
+  --faint: #888888;
   --year-inactive: #888888;
   --focus: rgba(0, 0, 0, 0.12);
+  --font-stack: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 *,
@@ -23,9 +23,9 @@ body {
   min-height: 100vh;
   background: var(--bg);
   color: var(--text);
-  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  font-size: 16px;
-  line-height: 1.55;
+  font-family: var(--font-stack);
+  font-size: 15px;
+  line-height: 1.38;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -93,35 +93,46 @@ a:focus-visible {
   min-width: 0;
 }
 
+.site-header-block {
+  margin-bottom: 48px;
+}
+
 .name {
-  font-size: clamp(1.75rem, 4vw, 2.25rem);
+  font-size: clamp(1.65rem, 3.8vw, 2.05rem);
   font-weight: 700;
-  letter-spacing: -0.03em;
-  line-height: 1.15;
-  margin: 0 0 6px;
+  letter-spacing: -0.035em;
+  line-height: 1.08;
+  margin: 0 0 8px;
 }
 
 .eyebrow {
-  margin: 0 0 20px;
+  margin: 0;
   font-size: 14px;
-  font-weight: 500;
+  font-weight: 400;
   color: var(--muted);
-}
-
-.intro {
-  margin: 0 0 40px;
-  max-width: 52ch;
-  font-size: 15px;
-  color: var(--muted);
-  line-height: 1.65;
+  line-height: 1.35;
 }
 
 .projects-panel {
-  min-height: 120px;
+  min-height: 80px;
+}
+
+.section-logo {
+  margin: 0 0 28px;
+}
+
+.section-logo img {
+  display: block;
+  height: auto;
+  width: auto;
+  max-width: 160px;
+  max-height: 120px;
+  object-fit: contain;
+  object-position: left top;
 }
 
 .project {
-  margin-bottom: 36px;
+  margin-bottom: 40px;
 }
 
 .project:last-child {
@@ -131,52 +142,47 @@ a:focus-visible {
 .project-title {
   font-size: 16px;
   font-weight: 700;
-  letter-spacing: -0.02em;
-  margin: 0 0 8px;
-  line-height: 1.35;
+  letter-spacing: -0.025em;
+  margin: 0 0 6px;
+  line-height: 1.25;
 }
 
 .project-meta {
   font-size: 13px;
   color: var(--faint);
-  margin: -4px 0 10px;
+  margin: 0 0 12px;
+  line-height: 1.35;
 }
 
 .project-body {
   margin: 0;
   font-size: 15px;
   color: var(--muted);
-  line-height: 1.65;
-  max-width: 52ch;
+  line-height: 1.42;
+  max-width: 48ch;
+  letter-spacing: -0.01em;
 }
 
 .project-body + .project-body {
-  margin-top: 12px;
+  margin-top: 8px;
 }
 
-.tools {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 14px;
-  padding: 0;
-  list-style: none;
-}
-
-.tools li {
-  font-size: 12px;
-  color: var(--faint);
-  padding: 4px 10px;
-  border: 1px solid rgba(0, 0, 0, 0.08);
-  border-radius: 999px;
+.project-video {
+  display: block;
+  width: 100%;
+  max-width: 560px;
+  margin-top: 20px;
+  border-radius: 2px;
+  background: #0a0a0a;
 }
 
 .site-footer {
   max-width: 920px;
   margin: 0 auto;
   padding: 0 clamp(20px, 4vw, 40px) 48px;
-  font-size: 14px;
+  font-size: 13px;
   color: var(--muted);
+  line-height: 1.4;
 }
 
 .site-footer a {
@@ -214,5 +220,9 @@ a:focus-visible {
 
   .year-btn {
     font-size: 14px;
+  }
+
+  .project-video {
+    max-width: 100%;
   }
 }
