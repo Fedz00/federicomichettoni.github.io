@@ -99,7 +99,7 @@ a {
   flex-direction: row;
   flex-wrap: nowrap;
   align-items: baseline;
-  gap: clamp(18px, 3vw, 36px);
+  gap: clamp(12px, 2.5vw, 28px);
   padding: 2px 0;
   color: inherit;
 }
@@ -108,15 +108,17 @@ a {
   display: inline-flex;
   flex-wrap: nowrap;
   align-items: center;
-  gap: 5px;
+  gap: 6px;
   flex-shrink: 0;
   padding-top: 0;
+  font-size: 16px;
+  line-height: 1.2;
 }
 
 .role-period {
-  font-size: 13px;
+  font-size: 1em;
   font-weight: 400;
-  line-height: 1.25;
+  line-height: 1.2;
   letter-spacing: -0.01em;
   color: var(--text-secondary);
   white-space: nowrap;
@@ -125,34 +127,11 @@ a {
 .role-logo {
   display: block;
   width: auto;
-  height: 13px;
-  max-width: 44px;
+  height: 1em;
+  max-width: 6em;
   object-fit: contain;
   object-position: left center;
   flex-shrink: 0;
-}
-
-.role-logo--immersive {
-  height: 13px;
-  max-width: 40px;
-}
-
-.role-mark-col--immersive {
-  flex-wrap: nowrap;
-  align-items: center;
-  gap: 5px;
-  max-width: none;
-}
-
-.role-brand-name {
-  font-size: 8px;
-  font-weight: 500;
-  line-height: 1.15;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  color: var(--text-secondary);
-  max-width: 64px;
-  flex-shrink: 1;
 }
 
 .role-text-col {
@@ -242,15 +221,6 @@ a {
 
   .role-mark-col {
     max-width: none;
-  }
-
-  .role-mark-col--immersive {
-    flex-wrap: wrap;
-    max-width: none;
-  }
-
-  .role-brand-name {
-    flex: 0 1 auto;
   }
 
   .preview-panel {
