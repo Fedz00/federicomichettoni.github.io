@@ -171,6 +171,21 @@ a:focus-visible {
   border-radius: 999px;
 }
 
+.project-link {
+  display: inline-block;
+  margin-top: 4px;
+  margin-bottom: 4px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+}
+
+.project-link:hover,
+.project-link:focus-visible {
+  border-bottom-color: var(--text);
+}
+
 .site-footer {
   max-width: 920px;
   margin: 0 auto;
