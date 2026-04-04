@@ -7,10 +7,6 @@
         {
           title: "Cumulus9",
           meta: "AI-driven visual content · derivatives & margin analytics",
-          relatedLink: {
-            href: "cumulus9-briefing.html",
-            label: "24/7 risk briefing (interactive piece)",
-          },
           paragraphs: [
             "At Cumulus9, I lead the development of AI-driven visual content for a derivatives margin analytics platform, defining concept, positioning and execution.",
             "I create short-form visual pieces designed to compare modern margin analytics workflows with legacy methods, highlighting ease of use, transparency and key product features — so the platform’s value is immediately understandable without relying on technical detail.",
@@ -125,14 +121,6 @@
         para.textContent = text;
         block.appendChild(para);
       });
-
-      if (p.relatedLink) {
-        const a = document.createElement("a");
-        a.href = p.relatedLink.href;
-        a.className = "project-link";
-        a.textContent = p.relatedLink.label;
-        block.appendChild(a);
-      }
 
       if (p.tools && p.tools.length) {
         const ul = document.createElement("ul");
