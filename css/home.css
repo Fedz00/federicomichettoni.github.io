@@ -4,14 +4,14 @@
   --text-secondary: #555;
   --font-stack: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   /* Fixed meta column — same width every row so text column x-origin matches */
-  --timeline-meta-w: 188px;
-  --timeline-gap: 48px;
-  --timeline-content-max: 560px;
+  --timeline-meta-w: 220px;
+  --timeline-gap: 40px;
+  /* Narrower copy column → more horizontal space for the fixed preview strip */
+  --timeline-content-max: 460px;
   --timeline-block: calc(var(--timeline-meta-w) + var(--timeline-gap) + var(--timeline-content-max));
   --page-pad-left: 72px;
   --page-pad-right: 48px;
-  --preview-gap: 28px;
-  --preview-max-w: 420px;
+  --preview-gap: 24px;
 }
 
 *,
@@ -132,10 +132,10 @@ main.layout.page,
   display: flex;
   align-items: center;
   gap: 8px;
-  font-size: 24px;
+  font-size: 22px;
   line-height: 1.2;
-  color: #444;
-  font-weight: 500;
+  color: #666;
+  font-weight: 400;
   width: 100%;
   max-width: var(--timeline-meta-w);
   overflow: hidden;
@@ -144,16 +144,24 @@ main.layout.page,
 .timeline-meta img {
   height: 1em;
   width: auto;
-  max-width: 56px;
+  max-width: min(148px, 100%);
   display: block;
-  flex-shrink: 0;
+  flex-shrink: 1;
+  min-width: 0;
   object-fit: contain;
   object-position: left center;
 }
 
+/* Wordmark matches date cap height; column width + flex allow horizontal assets */
+.timeline-meta--immersive img {
+  height: 1em;
+  max-width: 100%;
+  flex-shrink: 1;
+}
+
 .timeline-date {
   font-size: 1em;
-  font-weight: 500;
+  font-weight: 400;
   letter-spacing: -0.02em;
   color: inherit;
   white-space: nowrap;
@@ -199,14 +207,9 @@ main.layout.page,
 .preview-panel {
   position: fixed;
   top: 0;
+  right: var(--page-pad-right);
   bottom: 0;
   left: calc(var(--page-pad-left) + var(--timeline-block) + var(--preview-gap));
-  width: min(
-    var(--preview-max-w),
-    calc(100vw - var(--page-pad-left) - var(--page-pad-right) - var(--timeline-block) - var(--preview-gap) - 16px)
-  );
-  max-width: var(--preview-max-w);
-  right: auto;
   min-height: 0;
   background: #fff;
   overflow: hidden;
@@ -237,6 +240,27 @@ main.layout.page,
 
 .preview-inner.is-visible .preview-media {
   transform: scale(1);
+}
+
+/* Strip browser video chrome (e.g. Safari download / media affordances) on hover preview */
+.preview-panel video.preview-media {
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.preview-panel video.preview-media::-webkit-media-controls,
+.preview-panel video.preview-media::-webkit-media-controls-enclosure,
+.preview-panel video.preview-media::-webkit-media-controls-panel,
+.preview-panel video.preview-media::-webkit-media-controls-overlay-play-button,
+.preview-panel video.preview-media::-webkit-media-controls-start-playback-button,
+.preview-panel video.preview-media::-webkit-media-controls-timeline,
+.preview-panel video.preview-media::-webkit-media-controls-current-time-display,
+.preview-panel video.preview-media::-webkit-media-controls-time-remaining-display,
+.preview-panel video.preview-media::-webkit-media-controls-mute-button,
+.preview-panel video.preview-media::-webkit-media-controls-toggle-closed-captions-button,
+.preview-panel video.preview-media::-webkit-media-controls-volume-slider,
+.preview-panel video.preview-media::-webkit-media-controls-fullscreen-button {
+  display: none !important;
 }
 
 @media (max-width: 900px) {

@@ -29,6 +29,12 @@
         el.setAttribute("muted", "");
         el.setAttribute("loop", "");
         el.setAttribute("playsinline", "");
+        el.setAttribute("webkit-playsinline", "");
+        el.setAttribute("disableremoteplayback", "");
+        el.disablePictureInPicture = true;
+        el.setAttribute("disablePictureInPicture", "");
+        el.setAttribute("controlsList", "nodownload nofullscreen noremoteplayback");
+        el.controls = false;
         el.muted = true;
         el.src = uri;
         el.play().catch(function () {});
