@@ -4,14 +4,13 @@
   --text-secondary: #555;
   --font-stack: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   /* Fixed meta column — same width every row so text column x-origin matches */
-  --timeline-meta-w: 188px;
+  --timeline-meta-w: 200px;
   --timeline-gap: 48px;
   --timeline-content-max: 560px;
   --timeline-block: calc(var(--timeline-meta-w) + var(--timeline-gap) + var(--timeline-content-max));
   --page-pad-left: 72px;
   --page-pad-right: 48px;
-  --preview-gap: 28px;
-  --preview-max-w: 420px;
+  --preview-gap: 24px;
 }
 
 *,
@@ -132,28 +131,34 @@ main.layout.page,
   display: flex;
   align-items: center;
   gap: 8px;
-  font-size: 24px;
+  font-size: 22px;
   line-height: 1.2;
-  color: #444;
-  font-weight: 500;
+  color: #666;
+  font-weight: 400;
   width: 100%;
   max-width: var(--timeline-meta-w);
   overflow: hidden;
 }
 
 .timeline-meta img {
-  height: 1em;
+  height: 18px;
   width: auto;
-  max-width: 56px;
+  max-width: 72px;
   display: block;
   flex-shrink: 0;
   object-fit: contain;
   object-position: left center;
 }
 
+/* Slightly larger mark for horizontal / detailed Immersive asset */
+.timeline-meta--immersive img {
+  height: 24px;
+  max-width: 120px;
+}
+
 .timeline-date {
   font-size: 1em;
-  font-weight: 500;
+  font-weight: 400;
   letter-spacing: -0.02em;
   color: inherit;
   white-space: nowrap;
@@ -199,14 +204,9 @@ main.layout.page,
 .preview-panel {
   position: fixed;
   top: 0;
+  right: var(--page-pad-right);
   bottom: 0;
   left: calc(var(--page-pad-left) + var(--timeline-block) + var(--preview-gap));
-  width: min(
-    var(--preview-max-w),
-    calc(100vw - var(--page-pad-left) - var(--page-pad-right) - var(--timeline-block) - var(--preview-gap) - 16px)
-  );
-  max-width: var(--preview-max-w);
-  right: auto;
   min-height: 0;
   background: #fff;
   overflow: hidden;
