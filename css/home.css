@@ -190,7 +190,7 @@ a {
 .preview-panel {
   position: relative;
   min-height: 320px;
-  background: transparent;
+  background: #fff;
   overflow: hidden;
   pointer-events: none;
 }
@@ -218,20 +218,6 @@ a {
 
 .preview-inner.is-visible .preview-media {
   transform: scale(1);
-}
-
-.site-footer {
-  padding: 0 clamp(24px, 5vw, 56px) 36px;
-  font-size: 13px;
-  color: var(--text-secondary);
-}
-
-.site-footer a {
-  border-bottom: 1px solid rgba(85, 85, 85, 0.22);
-}
-
-.site-footer a:hover {
-  border-bottom-color: var(--text-secondary);
 }
 
 @media (max-width: 767px) {
