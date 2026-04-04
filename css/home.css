@@ -13,6 +13,7 @@
 
 html {
   height: 100%;
+  background: #fff;
 }
 
 body {
@@ -40,21 +41,21 @@ a {
 .layout {
   flex: 1;
   position: relative;
-  display: grid;
-  grid-template-columns: minmax(0, min(42vw, 520px)) 1fr;
-  min-height: 0;
+  min-height: 100vh;
   background: #fff;
 }
 
 .sidebar {
-  padding: clamp(40px, 7vw, 88px) clamp(24px, 5vw, 56px) 56px;
-  padding-right: clamp(16px, 3vw, 28px);
+  width: min(42vw, 520px);
+  max-width: 100%;
+  padding: clamp(40px, 7vw, 88px) clamp(20px, 3vw, 32px) 56px
+    clamp(48px, 10vw, 120px);
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  max-width: none;
   position: relative;
   z-index: 1;
+  background: #fff;
 }
 
 .identity {
@@ -188,11 +189,16 @@ a {
 }
 
 .preview-panel {
-  position: relative;
-  min-height: 320px;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: min(42vw, 520px);
+  min-height: 0;
   background: #fff;
   overflow: hidden;
   pointer-events: none;
+  z-index: 0;
 }
 
 .preview-inner {
@@ -221,12 +227,10 @@ a {
 }
 
 @media (max-width: 767px) {
-  .layout {
-    grid-template-columns: 1fr;
-    grid-template-rows: auto minmax(220px, 40vh);
-  }
-
   .sidebar {
+    width: 100%;
+    padding-left: clamp(32px, 8vw, 64px);
+    padding-right: clamp(24px, 5vw, 40px);
     padding-bottom: 32px;
   }
 
@@ -250,6 +254,11 @@ a {
   }
 
   .preview-panel {
+    position: relative;
+    left: 0;
+    right: 0;
+    width: 100%;
     min-height: 220px;
+    margin-top: 8px;
   }
 }
