@@ -207,7 +207,8 @@ main.layout.page,
 .preview-panel {
   position: fixed;
   top: 0;
-  right: var(--page-pad-right);
+  /* Flush to viewport — page padding stays on the text column only */
+  right: 0;
   bottom: 0;
   left: calc(var(--page-pad-left) + var(--timeline-block) + var(--preview-gap));
   min-height: 0;
@@ -248,7 +249,8 @@ main.layout.page,
  */
 .preview-video-crop {
   position: absolute;
-  inset: 0;
+  /* Slight bleed past panel edges so cover + transforms don’t leave 1px gaps */
+  inset: -4px;
   overflow: hidden;
   pointer-events: none;
 }
