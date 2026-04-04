@@ -5,28 +5,52 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="Federico Michettoni — visual direction and production." />
   <title>Federico Michettoni</title>
-  <link rel="stylesheet" href="portfolio.css" />
+  <link rel="stylesheet" href="css/home.css" />
 </head>
 <body>
-  <main class="layout">
-    <nav class="year-nav" id="yearNav" aria-label="Timeline"></nav>
+  <div class="shell">
+    <main class="layout">
+      <aside class="sidebar" aria-label="Introduction and work">
+        <header class="identity">
+          <h1 class="name">Federico Michettoni</h1>
+          <p class="identity-line">
+            <a href="mailto:federico.michettoni@gmail.com">federico.michettoni@gmail.com</a>
+            · London / Rome
+          </p>
+        </header>
 
-    <div class="content">
-      <header class="site-header-block">
-        <h1 class="name">Federico Michettoni</h1>
-        <p class="eyebrow">
-          <a href="mailto:federico.michettoni@gmail.com">federico.michettoni@gmail.com</a>
-        </p>
-      </header>
+        <nav class="role-list" id="roleList" aria-label="Selected work">
+          <a
+            class="role-item"
+            href="osaka/"
+            data-preview-type="video"
+            data-preview-src="images/osaka 2025.mp4"
+          >
+            <p class="role-title">UK Pavilion · Expo Osaka 2025</p>
+            <p class="role-meta">Immersive International</p>
+          </a>
+          <a
+            class="role-item"
+            href="cumulus9/"
+            data-preview-type="image"
+            data-preview-src="images/CUMULUS9.png"
+          >
+            <p class="role-title">Cumulus9</p>
+            <p class="role-meta">Marketing lead</p>
+          </a>
+        </nav>
+      </aside>
 
-      <div id="projectsPanel" class="projects-panel" aria-live="polite"></div>
-    </div>
-  </main>
+      <div class="preview-panel" id="previewPanel" aria-hidden="true">
+        <div class="preview-inner" id="previewInner"></div>
+      </div>
+    </main>
 
-  <footer class="site-footer">
-    <a href="gallery.html">Gallery</a>
-  </footer>
+    <footer class="site-footer">
+      <a href="gallery.html">Gallery</a>
+    </footer>
+  </div>
 
-  <script src="portfolio.js" defer></script>
+  <script src="js/home.js" defer></script>
 </body>
 </html>
