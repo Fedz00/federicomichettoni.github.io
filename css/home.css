@@ -272,11 +272,7 @@ main.layout.page,
   transform: scale(1.14);
 }
 
-/* Wider-than-tall clips: keep the left side of the frame visible (e.g. Cumulus9) */
-.preview-video-crop--focus-left video {
-  object-position: left center;
-  transform-origin: left center;
-}
+/* focus-left: object-position / transform-origin set in home.js (data-preview-object-x, default 10%) */
 
 /* Strip browser video chrome where WebKit exposes it */
 .preview-panel .preview-video-crop video::-webkit-media-controls,

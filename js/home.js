@@ -43,6 +43,18 @@
         vid.controls = false;
         vid.muted = true;
         vid.src = uri;
+        if (objectPos === "left") {
+          const xAttr = link.getAttribute("data-preview-object-x");
+          let xPct = 10;
+          if (xAttr !== null && String(xAttr).trim() !== "") {
+            const n = parseFloat(xAttr, 10);
+            if (!Number.isNaN(n)) {
+              xPct = Math.min(50, Math.max(0, n));
+            }
+          }
+          vid.style.objectPosition = xPct + "% center";
+          vid.style.transformOrigin = xPct + "% center";
+        }
         vid.play().catch(function () {});
         wrap.appendChild(vid);
         root = wrap;
