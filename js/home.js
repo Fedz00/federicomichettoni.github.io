@@ -25,6 +25,10 @@
       if (type === "video") {
         const wrap = document.createElement("div");
         wrap.className = "preview-video-crop";
+        const objectPos = (link.getAttribute("data-preview-object-position") || "").trim().toLowerCase();
+        if (objectPos === "left") {
+          wrap.classList.add("preview-video-crop--focus-left");
+        }
         const vid = document.createElement("video");
         vid.setAttribute("autoplay", "");
         vid.setAttribute("muted", "");

@@ -272,6 +272,12 @@ main.layout.page,
   transform: scale(1.14);
 }
 
+/* Wider-than-tall clips: keep the left side of the frame visible (e.g. Cumulus9) */
+.preview-video-crop--focus-left video {
+  object-position: left center;
+  transform-origin: left center;
+}
+
 /* Strip browser video chrome where WebKit exposes it */
 .preview-panel .preview-video-crop video::-webkit-media-controls,
 .preview-panel .preview-video-crop video::-webkit-media-controls-enclosure,
