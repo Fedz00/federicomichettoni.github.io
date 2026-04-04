@@ -5,12 +5,17 @@
       label: "2024–Present",
       projects: [
         {
+          logo: {
+            src: "images/cumulus9-logo.png",
+            alt: "Cumulus9",
+          },
           title: "Cumulus9",
           meta: "Derivatives margin analytics",
           paragraphs: [
             "Short-form visual content for a margin analytics platform.",
             "Concept through motion and delivery for digital distribution.",
           ],
+          video: "images/cumulus9-reel.mp4",
         },
       ],
     },
@@ -38,12 +43,17 @@
       label: "2023",
       projects: [
         {
+          logo: {
+            src: "images/inneraum-logo.png",
+            alt: "Inneraum",
+          },
           title: "Inneraum",
           meta: "Berlin fashion brand · campaign",
           paragraphs: [
             "Campaign built around one virtual persona and photographed product.",
             "Continuity of light, proportion and materials across the series.",
           ],
+          video: "images/inneraum-reel.mp4",
         },
       ],
     },
@@ -58,6 +68,7 @@
             "Garments on mannequins extended with generated figures.",
             "Proportion and fabric retained through compositing.",
           ],
+          video: "images/studio-mannequin-reel.mp4",
         },
       ],
     },
@@ -88,6 +99,17 @@
     section.projects.forEach((p) => {
       const block = document.createElement("article");
       block.className = "project";
+
+      if (p.logo) {
+        const logoWrap = document.createElement("div");
+        logoWrap.className = "project-logo";
+        const img = document.createElement("img");
+        img.src = p.logo.src;
+        img.alt = p.logo.alt;
+        img.loading = "lazy";
+        logoWrap.appendChild(img);
+        block.appendChild(logoWrap);
+      }
 
       const h = document.createElement("h2");
       h.className = "project-title";
