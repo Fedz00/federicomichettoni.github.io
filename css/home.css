@@ -3,12 +3,15 @@
   --text-primary: #111;
   --text-secondary: #555;
   --font-stack: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  --timeline-meta-w: 140px;
-  --timeline-gap: 44px;
-  --timeline-content-max: 520px;
+  /* Fixed meta column — same width every row so text column x-origin matches */
+  --timeline-meta-w: 188px;
+  --timeline-gap: 48px;
+  --timeline-content-max: 560px;
   --timeline-block: calc(var(--timeline-meta-w) + var(--timeline-gap) + var(--timeline-content-max));
   --page-pad-left: 72px;
   --page-pad-right: 48px;
+  --preview-gap: 28px;
+  --preview-max-w: 420px;
 }
 
 *,
@@ -26,8 +29,8 @@ body {
   margin: 0;
   min-height: 100%;
   font-family: var(--font-stack);
-  font-size: 15px;
-  line-height: 1.45;
+  font-size: 16px;
+  line-height: 1.5;
   color: var(--text-body);
   background: #fff;
   -webkit-font-smoothing: antialiased;
@@ -87,8 +90,8 @@ main.layout.page,
 
 .identity-line {
   margin: 0;
-  font-size: 14px;
-  line-height: 1.35;
+  font-size: 15px;
+  line-height: 1.4;
   font-weight: 400;
   color: var(--text-secondary);
 }
@@ -116,23 +119,32 @@ main.layout.page,
   align-items: start;
   padding: 2px 0;
   color: inherit;
+  width: 100%;
+}
+
+/* Prevent min-content blowout so column 1 stays exactly --timeline-meta-w */
+.timeline-row > .timeline-meta,
+.timeline-row > .timeline-content {
+  min-width: 0;
 }
 
 .timeline-meta {
   display: flex;
   align-items: center;
   gap: 8px;
-  font-size: 22px;
+  font-size: 24px;
   line-height: 1.2;
-  color: #666;
-  width: var(--timeline-meta-w);
-  min-width: 0;
+  color: #444;
+  font-weight: 500;
+  width: 100%;
+  max-width: var(--timeline-meta-w);
+  overflow: hidden;
 }
 
 .timeline-meta img {
-  height: 18px;
+  height: 1em;
   width: auto;
-  max-width: 72px;
+  max-width: 56px;
   display: block;
   flex-shrink: 0;
   object-fit: contain;
@@ -141,9 +153,11 @@ main.layout.page,
 
 .timeline-date {
   font-size: 1em;
-  font-weight: 400;
-  letter-spacing: -0.01em;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  color: inherit;
   white-space: nowrap;
+  min-width: 0;
 }
 
 .timeline-content {
@@ -152,23 +166,23 @@ main.layout.page,
 }
 
 .timeline-content p {
-  max-width: 32ch;
+  max-width: 36ch;
 }
 
 .role-title {
-  margin: 0 0 10px;
-  font-size: 16px;
+  margin: 0 0 12px;
+  font-size: 18px;
   font-weight: 600;
   letter-spacing: -0.022em;
-  line-height: 1.28;
+  line-height: 1.3;
   color: var(--text-primary);
 }
 
 .role-desc {
-  margin: 0 0 6px;
-  font-size: 14px;
+  margin: 0 0 8px;
+  font-size: 16px;
   font-weight: 400;
-  line-height: 1.5;
+  line-height: 1.55;
   letter-spacing: -0.01em;
   color: var(--text-secondary);
 }
@@ -185,9 +199,14 @@ main.layout.page,
 .preview-panel {
   position: fixed;
   top: 0;
-  right: var(--page-pad-right);
   bottom: 0;
-  left: calc(var(--page-pad-left) + var(--timeline-block));
+  left: calc(var(--page-pad-left) + var(--timeline-block) + var(--preview-gap));
+  width: min(
+    var(--preview-max-w),
+    calc(100vw - var(--page-pad-left) - var(--page-pad-right) - var(--timeline-block) - var(--preview-gap) - 16px)
+  );
+  max-width: var(--preview-max-w);
+  right: auto;
   min-height: 0;
   background: #fff;
   overflow: hidden;
@@ -220,7 +239,7 @@ main.layout.page,
   transform: scale(1);
 }
 
-@media (max-width: 824px) {
+@media (max-width: 900px) {
   .preview-panel {
     position: relative;
     left: 0;
