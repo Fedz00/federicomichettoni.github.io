@@ -50,6 +50,33 @@ h1 {
   color: var(--text-secondary);
 }
 
+.content-section {
+  margin-bottom: 28px;
+}
+
+.content-section h2 {
+  margin: 0 0 12px;
+  font-size: 1.05rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+}
+
+.service-list {
+  margin: 0 0 16px;
+  padding-left: 1.2em;
+  max-width: 52ch;
+  color: var(--text-body);
+}
+
+.service-list li {
+  margin-bottom: 8px;
+}
+
+.service-list li:last-child {
+  margin-bottom: 0;
+}
+
 .project-video-wrap {
   margin: 0 0 28px;
   max-width: 100%;
