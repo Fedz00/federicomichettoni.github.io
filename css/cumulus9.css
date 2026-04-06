@@ -1,0 +1,201 @@
+.c9-page-content,
+.c9-page-content * {
+  box-sizing: border-box;
+}
+
+.c9-page-content {
+  background: #fff;
+  font-family: -apple-system, BlinkMacSystemFont, "San Francisco", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.c9-page-content .section {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 2rem 0 3rem;
+}
+
+.c9-page-content .intro {
+  font-size: 14px;
+  color: #888;
+  line-height: 1.7;
+  margin-bottom: 2.5rem;
+}
+
+.c9-page-content .stats-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+.c9-page-content .stat-num {
+  font-size: 24px;
+  font-weight: 500;
+  color: #1a56a0;
+  line-height: 1.1;
+}
+
+.c9-page-content .stat-label {
+  font-size: 12px;
+  color: #aaa;
+  margin-top: 5px;
+  line-height: 1.5;
+}
+
+.c9-page-content .grid-label {
+  font-size: 11px;
+  color: #bbb;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+
+.c9-page-content .post-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-bottom: 1rem;
+}
+
+.c9-page-content .post-tile {
+  background: #fff;
+  border-radius: 8px;
+  padding: 16px;
+  cursor: pointer;
+  border: 1px solid #eee;
+  transition: border-color 0.15s;
+}
+
+.c9-page-content .post-tile:hover {
+  border-color: #ccc;
+}
+
+.c9-page-content .post-tile.active {
+  border-color: #1a56a0;
+}
+
+.c9-page-content .tile-type {
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #bbb;
+  margin-bottom: 8px;
+}
+
+.c9-page-content .tile-title {
+  font-size: 12px;
+  color: #222;
+  line-height: 1.45;
+  font-weight: 500;
+}
+
+.c9-page-content .tile-ctr {
+  font-size: 20px;
+  font-weight: 500;
+  color: #1a56a0;
+  margin-top: 14px;
+}
+
+.c9-page-content .tile-ctr-label {
+  font-size: 10px;
+  color: #bbb;
+  margin-top: 2px;
+}
+
+.c9-page-content .detail {
+  padding: 1.5rem 0;
+  margin-bottom: 2.5rem;
+  border-top: 1px solid #eee;
+  border-bottom: 1px solid #eee;
+  min-height: 120px;
+}
+
+.c9-page-content .detail-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 1rem;
+}
+
+.c9-page-content .detail-title {
+  font-size: 14px;
+  font-weight: 500;
+  color: #222;
+  line-height: 1.4;
+}
+
+.c9-page-content .detail-date {
+  font-size: 12px;
+  color: #bbb;
+  white-space: nowrap;
+}
+
+.c9-page-content .detail-metrics {
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
+.c9-page-content .dm-val {
+  font-size: 20px;
+  font-weight: 500;
+  color: #1a56a0;
+}
+
+.c9-page-content .dm-label {
+  font-size: 11px;
+  color: #aaa;
+  margin-top: 2px;
+}
+
+.c9-page-content .detail-about {
+  font-size: 13px;
+  color: #888;
+  line-height: 1.7;
+}
+
+.c9-page-content .approach {
+  margin-bottom: 2rem;
+}
+
+.c9-page-content .approach-item {
+  display: flex;
+  gap: 2rem;
+  padding: 14px 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.c9-page-content .approach-item:last-child {
+  border-bottom: none;
+}
+
+.c9-page-content .approach-num {
+  font-size: 12px;
+  color: #c0392b;
+  min-width: 20px;
+  font-weight: 500;
+}
+
+.c9-page-content .approach-text {
+  font-size: 13px;
+  color: #888;
+  line-height: 1.7;
+}
+
+.c9-page-content .approach-text strong {
+  color: #222;
+  font-weight: 500;
+}
+
+@media (max-width: 720px) {
+  .c9-page-content .stats-row {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
+  }
+
+  .c9-page-content .post-grid {
+    grid-template-columns: 1fr;
+  }
+}
