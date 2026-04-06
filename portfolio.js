@@ -28,7 +28,7 @@
       },
       projects: [
         {
-          title: "UK Pavilion · Expo Osaka 2025",
+          title: "Key artist · UK Pavilion · Expo Osaka 2025",
           meta: "Immersive International",
           paragraphs: [
             "Translated conceptual direction into production-ready visuals for large-scale environments.",
