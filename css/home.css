@@ -305,6 +305,17 @@ main.layout.page,
     display: flex;
     flex-direction: column;
   }
+
+  /* First tap loads preview; hint for second tap to follow the link */
+  .timeline-row--tap-open .timeline-content::after {
+    content: "Tap again to open in a new tab";
+    display: block;
+    margin-top: 10px;
+    font-size: 13px;
+    font-weight: 400;
+    color: #888;
+    letter-spacing: -0.01em;
+  }
 }
 
 @media (max-width: 767px) {

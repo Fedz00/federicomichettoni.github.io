@@ -1,4 +1,8 @@
 (function () {
+  function isMobilePreviewMode() {
+    return window.matchMedia("(max-width: 900px)").matches;
+  }
+
   const PreviewPanel = {
     inner: null,
     panel: null,
@@ -93,30 +97,76 @@
   const Sidebar = {
     init(roleList) {
       const items = roleList.querySelectorAll(".timeline-row");
+      let mobileTapReadyRow = null;
+
+      function clearMobileTapState() {
+        if (mobileTapReadyRow) {
+          mobileTapReadyRow.classList.remove("timeline-row--tap-open");
+          mobileTapReadyRow = null;
+        }
+      }
 
       items.forEach(function (link) {
         link.addEventListener("mouseenter", function () {
+          if (isMobilePreviewMode()) return;
           PreviewPanel.showFromLink(link);
+        });
+
+        link.addEventListener("click", function (e) {
+          if (!isMobilePreviewMode()) return;
+          const type = link.getAttribute("data-preview-type");
+          if (!type) return;
+
+          if (mobileTapReadyRow === link) {
+            e.preventDefault();
+            clearMobileTapState();
+            PreviewPanel.hide();
+            window.open(link.href, "_blank", "noopener,noreferrer");
+            return;
+          }
+
+          e.preventDefault();
+          if (mobileTapReadyRow && mobileTapReadyRow !== link) {
+            mobileTapReadyRow.classList.remove("timeline-row--tap-open");
+          }
+          mobileTapReadyRow = link;
+          link.classList.add("timeline-row--tap-open");
+          PreviewPanel.showFromLink(link);
+          window.requestAnimationFrame(function () {
+            const panel = document.getElementById("previewPanel");
+            if (panel) {
+              panel.scrollIntoView({ behavior: "smooth", block: "nearest" });
+            }
+          });
         });
       });
 
       roleList.addEventListener("mouseleave", function (e) {
+        if (isMobilePreviewMode()) return;
         if (!roleList.contains(e.relatedTarget)) {
           PreviewPanel.hide();
         }
       });
 
       roleList.addEventListener("focusin", function (e) {
+        if (isMobilePreviewMode()) return;
         const link = e.target.closest(".timeline-row");
         if (link) PreviewPanel.showFromLink(link);
       });
 
       roleList.addEventListener("focusout", function () {
+        if (isMobilePreviewMode()) return;
         window.requestAnimationFrame(function () {
           if (!roleList.contains(document.activeElement)) {
             PreviewPanel.hide();
           }
         });
+      });
+
+      window.addEventListener("resize", function () {
+        if (!isMobilePreviewMode()) {
+          clearMobileTapState();
+        }
       });
     },
   };
