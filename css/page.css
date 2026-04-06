@@ -59,7 +59,10 @@ h1 {
   display: block;
   width: 100%;
   max-width: 560px;
+  /* Reserve space so the player isn’t 0px tall before metadata loads (mobile Safari). */
+  min-height: 200px;
   height: auto;
+  object-fit: contain;
   border-radius: 6px;
   background: #0a1628;
 }
