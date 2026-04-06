@@ -97,47 +97,11 @@
   const Sidebar = {
     init(roleList) {
       const items = roleList.querySelectorAll(".timeline-row");
-      let mobileTapReadyRow = null;
-
-      function clearMobileTapState() {
-        if (mobileTapReadyRow) {
-          mobileTapReadyRow.classList.remove("timeline-row--tap-open");
-          mobileTapReadyRow = null;
-        }
-      }
 
       items.forEach(function (link) {
         link.addEventListener("mouseenter", function () {
           if (isMobilePreviewMode()) return;
           PreviewPanel.showFromLink(link);
-        });
-
-        link.addEventListener("click", function (e) {
-          if (!isMobilePreviewMode()) return;
-          const type = link.getAttribute("data-preview-type");
-          if (!type) return;
-
-          if (mobileTapReadyRow === link) {
-            e.preventDefault();
-            clearMobileTapState();
-            PreviewPanel.hide();
-            window.open(link.href, "_blank", "noopener,noreferrer");
-            return;
-          }
-
-          e.preventDefault();
-          if (mobileTapReadyRow && mobileTapReadyRow !== link) {
-            mobileTapReadyRow.classList.remove("timeline-row--tap-open");
-          }
-          mobileTapReadyRow = link;
-          link.classList.add("timeline-row--tap-open");
-          PreviewPanel.showFromLink(link);
-          window.requestAnimationFrame(function () {
-            const panel = document.getElementById("previewPanel");
-            if (panel) {
-              panel.scrollIntoView({ behavior: "smooth", block: "nearest" });
-            }
-          });
         });
       });
 
@@ -161,12 +125,6 @@
             PreviewPanel.hide();
           }
         });
-      });
-
-      window.addEventListener("resize", function () {
-        if (!isMobilePreviewMode()) {
-          clearMobileTapState();
-        }
       });
     },
   };

@@ -292,29 +292,14 @@ main.layout.page,
 }
 
 @media (max-width: 900px) {
+  /* No in-page hover preview on narrow viewports — tap follows the link */
   .preview-panel {
-    position: relative;
-    left: 0;
-    right: 0;
-    width: 100%;
-    min-height: 220px;
-    margin-top: 24px;
+    display: none;
   }
 
   .layout {
     display: flex;
     flex-direction: column;
-  }
-
-  /* First tap loads preview; hint for second tap to follow the link */
-  .timeline-row--tap-open .timeline-content::after {
-    content: "Tap again to open in a new tab";
-    display: block;
-    margin-top: 10px;
-    font-size: 13px;
-    font-weight: 400;
-    color: #888;
-    letter-spacing: -0.01em;
   }
 }
 
