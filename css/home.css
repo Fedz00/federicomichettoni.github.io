@@ -186,6 +186,16 @@ main.layout.page,
   color: var(--text-primary);
 }
 
+/* Second line for project / venue (e.g. Osaka row under “Style frame artist at …”) */
+.role-project {
+  margin: -6px 0 12px;
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.35;
+  color: var(--text-primary);
+}
+
 .role-desc {
   margin: 0 0 8px;
   font-size: 16px;

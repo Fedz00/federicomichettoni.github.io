@@ -28,7 +28,7 @@
       },
       projects: [
         {
-          title: "Style frame artist · UK Pavilion · Expo Osaka 2025",
+          title: "Style frame artist at Immersive International — UK Pavilion · Expo Osaka 2025",
           meta: "Immersive International",
           paragraphs: [
             "Translated conceptual direction into production-ready visuals for large-scale environments.",
