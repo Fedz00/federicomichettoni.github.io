@@ -291,12 +291,14 @@ main.layout.page,
   display: none !important;
 }
 
-@media (max-width: 900px) {
-  /* No in-page hover preview on narrow viewports — tap follows the link */
+/* No home-page hover preview on touch / narrow viewports — video belongs on project pages */
+@media (max-width: 900px), (hover: none) {
   .preview-panel {
-    display: none;
+    display: none !important;
   }
+}
 
+@media (max-width: 900px) {
   .layout {
     display: flex;
     flex-direction: column;

@@ -1,6 +1,7 @@
 (function () {
-  function isMobilePreviewMode() {
-    return window.matchMedia("(max-width: 900px)").matches;
+  /** Hover preview on the home page only for desktop-style pointers (no touch-only / narrow layouts). */
+  function isHomePreviewAllowed() {
+    return window.matchMedia("(min-width: 901px) and (hover: hover)").matches;
   }
 
   const PreviewPanel = {
@@ -14,6 +15,9 @@
     },
 
     showFromLink(link) {
+      if (!isHomePreviewAllowed()) {
+        return;
+      }
       if (this.hideTimer) {
         clearTimeout(this.hideTimer);
         this.hideTimer = null;
@@ -100,26 +104,26 @@
 
       items.forEach(function (link) {
         link.addEventListener("mouseenter", function () {
-          if (isMobilePreviewMode()) return;
+          if (!isHomePreviewAllowed()) return;
           PreviewPanel.showFromLink(link);
         });
       });
 
       roleList.addEventListener("mouseleave", function (e) {
-        if (isMobilePreviewMode()) return;
+        if (!isHomePreviewAllowed()) return;
         if (!roleList.contains(e.relatedTarget)) {
           PreviewPanel.hide();
         }
       });
 
       roleList.addEventListener("focusin", function (e) {
-        if (isMobilePreviewMode()) return;
+        if (!isHomePreviewAllowed()) return;
         const link = e.target.closest(".timeline-row");
         if (link) PreviewPanel.showFromLink(link);
       });
 
       roleList.addEventListener("focusout", function () {
-        if (isMobilePreviewMode()) return;
+        if (!isHomePreviewAllowed()) return;
         window.requestAnimationFrame(function () {
           if (!roleList.contains(document.activeElement)) {
             PreviewPanel.hide();
