@@ -6,7 +6,6 @@
 :root {
   --c9-media-w: clamp(260px, 30vw, 380px);
   --c9-left-gutter: 88px;
-  --c9-media-top: 110px;
 }
 
 body {
@@ -77,12 +76,13 @@ body {
 
 .c9-page-content .media-preview {
   position: fixed;
-  top: var(--c9-media-top);
+  top: 50%;
   right: 28px;
   width: var(--c9-media-w);
+  transform: translateY(-50%);
   aspect-ratio: 1 / 1;
   min-height: 0;
-  max-height: min(var(--c9-media-w), calc(100vh - var(--c9-media-top) - 24px));
+  max-height: min(var(--c9-media-w), calc(100vh - 48px));
   margin: 0;
   border: 1px solid #eee;
   border-radius: 10px;

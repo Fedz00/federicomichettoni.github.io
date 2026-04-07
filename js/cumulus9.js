@@ -5,7 +5,7 @@
       date: "Nov 2025",
       type: "Event · Video",
       mediaType: "video",
-      mediaSrc: "../images/fia-expo-2025-web.mp4?v=1",
+      mediaSrc: "../images/fia-expo-2025-web.mp4?v=2",
       impressions: 2499,
       clicks: 699,
       ctr: "27.97%",
@@ -53,7 +53,7 @@
       date: "Dec 2025",
       type: "Event · Video",
       mediaType: "video",
-      mediaSrc: "../images/cumulus9-video.mp4?v=4",
+      mediaSrc: "../images/cumulus9-video.mp4?v=5",
       impressions: 1895,
       clicks: 180,
       ctr: "9.5%",
@@ -65,7 +65,7 @@
       date: "Jun 2025",
       type: "Award · Video",
       mediaType: "video",
-      mediaSrc: "../images/cumulus9-video.mp4?v=4",
+      mediaSrc: "../images/cumulus9-video.mp4?v=5",
       impressions: 2185,
       clicks: 144,
       ctr: "6.59%",
@@ -74,7 +74,8 @@
     },
   ];
 
-  let active = 0;
+  // Default selected card: #5 ("FIA Expo recap video")
+  let active = 4;
 
   function select(i) {
     active = i;
@@ -110,23 +111,9 @@
       .join("");
 
     grid.querySelectorAll(".post-tile").forEach(function (tile) {
-      tile.addEventListener("mouseenter", function () {
-        const hoveredIndex = parseInt(tile.getAttribute("data-index"), 10);
-        renderMedia(posts[hoveredIndex], media);
-      });
-
-      tile.addEventListener("focus", function () {
-        const focusedIndex = parseInt(tile.getAttribute("data-index"), 10);
-        renderMedia(posts[focusedIndex], media);
-      });
-
       tile.addEventListener("click", function () {
         select(parseInt(tile.getAttribute("data-index"), 10));
       });
-    });
-
-    grid.addEventListener("mouseleave", function () {
-      renderMedia(posts[active], media);
     });
 
     const p = posts[active];
