@@ -4,6 +4,8 @@
       title: "#FIAExpo Chicago — conference recap",
       date: "Nov 2025",
       type: "Event · Image",
+      mediaType: "image",
+      mediaSrc: "../images/CUMULUS9.png",
       impressions: 2499,
       clicks: 699,
       ctr: "27.97%",
@@ -14,6 +16,8 @@
       title: "Next wave of features — stress testing",
       date: "Sep 2025",
       type: "Product · Image",
+      mediaType: "image",
+      mediaSrc: "../images/CUMULUS9.png",
       impressions: 2904,
       clicks: 383,
       ctr: "13.19%",
@@ -24,6 +28,8 @@
       title: "AI Risk Assistant launch",
       date: "Jan 2026",
       type: "Product · Image",
+      mediaType: "image",
+      mediaSrc: "../images/CUMULUS9.png",
       impressions: 821,
       clicks: 111,
       ctr: "13.52%",
@@ -34,6 +40,8 @@
       title: "FOW Asia Pacific Award",
       date: "Sep 2025",
       type: "Award · Image",
+      mediaType: "image",
+      mediaSrc: "../images/CUMULUS9.png",
       impressions: 1626,
       clicks: 190,
       ctr: "11.69%",
@@ -44,6 +52,8 @@
       title: "FIA Expo recap video",
       date: "Dec 2025",
       type: "Event · Video",
+      mediaType: "video",
+      mediaSrc: "../images/cumulus9-video.mp4?v=4",
       impressions: 1895,
       clicks: 180,
       ctr: "9.5%",
@@ -54,6 +64,8 @@
       title: "Credit Risk Innovation of the Year",
       date: "Jun 2025",
       type: "Award · Video",
+      mediaType: "video",
+      mediaSrc: "../images/cumulus9-video.mp4?v=4",
       impressions: 2185,
       clicks: 144,
       ctr: "6.59%",
@@ -71,8 +83,9 @@
 
   function render() {
     const grid = document.getElementById("c9-grid");
+    const media = document.getElementById("c9-media");
     const detail = document.getElementById("c9-detail");
-    if (!grid || !detail) return;
+    if (!grid || !detail || !media) return;
 
     grid.innerHTML = posts
       .map(function (p, i) {
@@ -97,12 +110,27 @@
       .join("");
 
     grid.querySelectorAll(".post-tile").forEach(function (tile) {
+      tile.addEventListener("mouseenter", function () {
+        const hoveredIndex = parseInt(tile.getAttribute("data-index"), 10);
+        renderMedia(posts[hoveredIndex], media);
+      });
+
+      tile.addEventListener("focus", function () {
+        const focusedIndex = parseInt(tile.getAttribute("data-index"), 10);
+        renderMedia(posts[focusedIndex], media);
+      });
+
       tile.addEventListener("click", function () {
         select(parseInt(tile.getAttribute("data-index"), 10));
       });
     });
 
+    grid.addEventListener("mouseleave", function () {
+      renderMedia(posts[active], media);
+    });
+
     const p = posts[active];
+    renderMedia(p, media);
     detail.innerHTML =
       '<div class="detail-header">' +
       '<div class="detail-title">' +
@@ -124,6 +152,25 @@
       '<div class="detail-about">' +
       escapeHtml(p.about) +
       "</div>";
+  }
+
+  function renderMedia(post, mediaRoot) {
+    if (!post || !post.mediaSrc) {
+      mediaRoot.innerHTML = "";
+      return;
+    }
+
+    if (post.mediaType === "video") {
+      mediaRoot.innerHTML =
+        '<video autoplay muted loop playsinline webkit-playsinline preload="metadata">' +
+        '<source src="' +
+        escapeHtml(post.mediaSrc) +
+        '" type="video/mp4" />' +
+        "</video>";
+      return;
+    }
+
+    mediaRoot.innerHTML = '<img src="' + escapeHtml(post.mediaSrc) + '" alt="' + escapeHtml(post.title) + '" />';
   }
 
   function escapeHtml(s) {
