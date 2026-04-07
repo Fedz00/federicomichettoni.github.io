@@ -3,9 +3,9 @@
     {
       title: "#FIAExpo Chicago — conference recap",
       date: "Nov 2025",
-      type: "Event · Image",
-      mediaType: "image",
-      mediaSrc: "../images/CUMULUS9.png",
+      type: "Event · Video",
+      mediaType: "video",
+      mediaSrc: "../images/FIA%20EXPO%202025.mp4?v=1",
       impressions: 2499,
       clicks: 699,
       ctr: "27.97%",
