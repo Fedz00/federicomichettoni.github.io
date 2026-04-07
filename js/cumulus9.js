@@ -5,7 +5,7 @@
       date: "Nov 2025",
       type: "Event · Video",
       mediaType: "video",
-      mediaSrc: "../images/FIA%20EXPO%202025.mp4?v=1",
+      mediaSrc: "../images/fia-expo-2025-web.mp4?v=1",
       impressions: 2499,
       clicks: 699,
       ctr: "27.97%",
