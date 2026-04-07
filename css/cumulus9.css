@@ -11,7 +11,13 @@
 .c9-page-content .section {
   max-width: 720px;
   margin: 0 auto;
-  padding: 2rem 0 3rem;
+  padding: 0 0 3rem;
+}
+
+
+/* Pull intro up so it aligns with the page rhythm. */
+.back {
+  margin-bottom: 16px;
 }
 
 .c9-page-content .intro {
