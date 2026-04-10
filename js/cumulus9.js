@@ -28,8 +28,12 @@
       title: "AI Risk Assistant launch",
       date: "Jan 2026",
       type: "Product · Image",
-      mediaType: "image",
-      mediaSrc: "../images/CUMULUS9.png",
+      mediaType: "gallery",
+      mediaSrcs: [
+        "../images/ai-risk-assistant-1.png?v=1",
+        "../images/ai-risk-assistant-2.png?v=1",
+        "../images/ai-risk-assistant-3.png?v=1",
+      ],
       impressions: 821,
       clicks: 111,
       ctr: "13.52%",
@@ -76,6 +80,7 @@
 
   // Default selected card: #5 ("FIA Expo recap video")
   let active = 4;
+  let galleryTimer = null;
 
   function select(i) {
     active = i;
@@ -113,7 +118,7 @@
     grid.querySelectorAll(".post-tile").forEach(function (tile) {
       tile.addEventListener("mouseenter", function () {
         const hoveredIndex = parseInt(tile.getAttribute("data-index"), 10);
-        if (hoveredIndex === 4) {
+        if (hoveredIndex === 2 || hoveredIndex === 4) {
           renderMedia(posts[hoveredIndex], media);
         }
       });
@@ -149,8 +154,25 @@
   }
 
   function renderMedia(post, mediaRoot) {
+    if (galleryTimer) {
+      clearInterval(galleryTimer);
+      galleryTimer = null;
+    }
+
     if (!post || !post.mediaSrc) {
-      mediaRoot.innerHTML = "";
+      if (!post || !post.mediaSrcs || !post.mediaSrcs.length) {
+        mediaRoot.innerHTML = "";
+        return;
+      }
+    }
+
+    if (post.mediaType === "gallery" && post.mediaSrcs && post.mediaSrcs.length) {
+      let idx = 0;
+      mediaRoot.innerHTML = '<img src="' + escapeHtml(post.mediaSrcs[0]) + '" alt="' + escapeHtml(post.title) + '" />';
+      galleryTimer = setInterval(function () {
+        idx = (idx + 1) % post.mediaSrcs.length;
+        mediaRoot.innerHTML = '<img src="' + escapeHtml(post.mediaSrcs[idx]) + '" alt="' + escapeHtml(post.title) + '" />';
+      }, 1700);
       return;
     }
 
