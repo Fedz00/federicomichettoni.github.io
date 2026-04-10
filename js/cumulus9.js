@@ -111,6 +111,13 @@
       .join("");
 
     grid.querySelectorAll(".post-tile").forEach(function (tile) {
+      tile.addEventListener("mouseenter", function () {
+        const hoveredIndex = parseInt(tile.getAttribute("data-index"), 10);
+        if (hoveredIndex === 4) {
+          renderMedia(posts[hoveredIndex], media);
+        }
+      });
+
       tile.addEventListener("click", function () {
         select(parseInt(tile.getAttribute("data-index"), 10));
       });
