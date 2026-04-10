@@ -80,7 +80,6 @@
 
   // Default selected card: #5 ("FIA Expo recap video")
   let active = 4;
-  let galleryTimer = null;
 
   function select(i) {
     active = i;
@@ -154,10 +153,7 @@
   }
 
   function renderMedia(post, mediaRoot) {
-    if (galleryTimer) {
-      clearInterval(galleryTimer);
-      galleryTimer = null;
-    }
+    mediaRoot.classList.remove("is-gallery");
 
     if (!post || !post.mediaSrc) {
       if (!post || !post.mediaSrcs || !post.mediaSrcs.length) {
@@ -167,12 +163,20 @@
     }
 
     if (post.mediaType === "gallery" && post.mediaSrcs && post.mediaSrcs.length) {
-      let idx = 0;
-      mediaRoot.innerHTML = '<img src="' + escapeHtml(post.mediaSrcs[0]) + '" alt="' + escapeHtml(post.title) + '" />';
-      galleryTimer = setInterval(function () {
-        idx = (idx + 1) % post.mediaSrcs.length;
-        mediaRoot.innerHTML = '<img src="' + escapeHtml(post.mediaSrcs[idx]) + '" alt="' + escapeHtml(post.title) + '" />';
-      }, 1700);
+      mediaRoot.classList.add("is-gallery");
+      mediaRoot.innerHTML = post.mediaSrcs
+        .map(function (src, idx) {
+          return (
+            '<img src="' +
+            escapeHtml(src) +
+            '" alt="' +
+            escapeHtml(post.title) +
+            " image " +
+            (idx + 1) +
+            '" />'
+          );
+        })
+        .join("");
       return;
     }
 
