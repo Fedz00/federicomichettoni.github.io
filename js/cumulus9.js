@@ -53,7 +53,7 @@
       date: "Dec 2025",
       type: "Event · Video",
       mediaType: "video",
-      mediaSrc: "../images/cumulus9-video.mp4?v=5",
+      mediaSrc: "../images/fia-expo-2025-web.mp4?v=3",
       impressions: 1895,
       clicks: 180,
       ctr: "9.5%",
